@@ -1,8 +1,9 @@
 import React from 'react';
 import Card from './Card';
-import { robots } from '../utils/Robot';
 
-export default function CardList() {
+
+export default function CardList(props) {
+    const {robots} = props;
     return (
         <div>
             {
