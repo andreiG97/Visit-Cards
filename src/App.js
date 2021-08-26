@@ -1,34 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import CardList from './components/CardList';
 import SearchBar from './components/SearchBar';
 import {robots} from './utils/Robot';
 
-class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      robotArray: robots,
-      search: ''
-    }
+function App ()  {
+  const [ robotArray, setRobots] = useState(robots);
+  const [search, setSearch] = useState('');
+  //   this.state = {
+  //     robotArray: robots,
+  //     search: ''
+    
+  // }
+  const onSearch = (event) => {
+    setSearch(event.target.value)
   }
-  onSearch = (event) => {
-    this.setState({search: event.target.value})
-  }
-  render(){
-    const filteredRobots = this.state.robotArray.filter(robot => {
+
+    const filteredRobots = robotArray.filter(robot => {
       return ( 
-         robot.name.toLowerCase().includes(this.state.search.toLowerCase())
+         robot.name.toLowerCase().includes(search.toLowerCase())
          )     
     })
       return (
        
         <div className="App tc">
-            <SearchBar search={this.onSearch}/>
+            <h1>ROBOTS FOR EVERYONE</h1>
+            <SearchBar search={onSearch}/>
             <CardList robots={filteredRobots}/>
         </div>
       );
 
-      }
+      
 }
 export default App;
